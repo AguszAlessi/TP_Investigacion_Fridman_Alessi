@@ -7,6 +7,14 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+    "plugins": [
+      [
+        "expo-contacts",
+        {
+          "contactsPermission": "Allow $(PRODUCT_NAME) to access your contacts."
+        }
+      ]
+    ],
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",

@@ -1,13 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useEffect } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import * as Contacts from 'expo-contacts';
 
 export default function App() {
-  return (
+  useEffect(() => {
+    (async () => {
+      const { status } = await Contacts.requestPermissionsAsync();
+      if (status === 'granted') {
+        const { data } = await Contacts.getContactsAsync({
+          fields:
+            [
+              Contacts.Fields.Emails,
+              Contacts.Fields.Nombre,
+              Contacts.Fields.Apellido,
+              Contacts.Fields.Numero
+            ]
+        });
+      }
+    })();
+  },
+  []);
+
+  if (permission == "denied")
+  {
+     return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text>Permiso denegado</Text>
     </View>
   );
+  }
 }
 
 const styles = StyleSheet.create({
