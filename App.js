@@ -12,14 +12,16 @@ export default function App() {
   useEffect(() => {
     (async () => {
       const { status } = await Contacts.requestPermissionsAsync();
+      setPermission(status);
       if (status === 'granted') {
         const { data } = await Contacts.getContactsAsync({
           fields:
             [
               Contacts.Fields.Emails,
-              Contacts.Fields.Nombre,
-              Contacts.Fields.Apellido,
-              Contacts.Fields.Numero
+              Contacts.Fields.Name,
+              Contacts.Fields.FirstName,
+              Contacts.Fields.LastName,
+              Contacts.Fields.PhoneNumbers
             ]
         });
         
